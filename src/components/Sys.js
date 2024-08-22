@@ -4,7 +4,7 @@ import { storage, database } from './firebase';
 import { uploadBytesResumable, getDownloadURL, ref as storageRef } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import './Sys.css';
-import { getAuth } from 'firebase/auth'; // Import Firebase Auth
+import { getAuth } from 'firebase/auth';
 
 const Sys = () => {
   const [id, setId] = useState(1);
@@ -17,8 +17,9 @@ const Sys = () => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);
+  const [timestampRilis, setTimestampRilis] = useState(new Date().toLocaleString()); // State for Timestamp Rilis
   const navigate = useNavigate();
-  const auth = getAuth(); // Get Firebase Auth instance
+  const auth = getAuth();
 
   useEffect(() => {
     const fetchLatestId = async () => {
@@ -39,6 +40,13 @@ const Sys = () => {
     fetchLatestId();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimestampRilis(new Date().toLocaleString()); // Update timestamp every second
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -46,9 +54,8 @@ const Sys = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Check if the user is logged in
     if (!auth.currentUser) {
-      setError('Oops, Anda belum login..tidak dapat menguploud Audio Mp3, Klik Button Komentar agar Anda dapat login, dan lakukan registrasi!!');
+      setError('Oops, Anda belum login..tidak dapat mengupload Audio Mp3, Klik Button Komentar agar Anda dapat login, dan lakukan registrasi!!');
       return;
     }
 
@@ -65,13 +72,10 @@ const Sys = () => {
 
     uploadTask.on(
       'state_changed',
-      (snapshot) => {
-        // Progress monitoring can be done here if needed
-      },
+      (snapshot) => {},
       (err) => {
-        // Check for permission errors specifically
         if (err.code === 'storage/unauthorized') {
-          setError('Oops, Anda belum login..tidak dapat menguploud Audio Mp3, Klik Button Komentar agar Anda dapat login, dan lakukan registrasi!!');
+          setError('Oops, Anda belum login..tidak dapat mengupload Audio Mp3, Klik Button Komentar agar Anda dapat login, dan lakukan registrasi!!');
         } else {
           setError('Terjadi kesalahan saat mengunggah file: ' + err.message);
         }
@@ -89,6 +93,7 @@ const Sys = () => {
             licensingFee,
             priceDownload,
             trailerSong: url,
+            timestampRilis, // Save the timestamp rilis in the database
           };
           const dbRef = ref(database, 'ListSong1/' + id);
           await update(dbRef, newSong);
@@ -137,27 +142,15 @@ const Sys = () => {
           <label>Unggah MP3:</label>
           <input type="file" accept=".mp3" onChange={handleFileChange} required />
         </div>
+        <div>
+          <label>Timestamp Rilis:</label>
+          <input type="text" value={timestampRilis} readOnly />
+        </div>
         {error && <p className="error">{error}</p>}
         <button type="submit" disabled={uploading}>
           {uploading ? 'Mengunggah...' : 'Unggah Lagu'}
         </button>
       </form>
-      {/* New content below the form */}
-      <div className="image-section">
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/sell-your-songs.appspot.com/o/InfoKompetisi%20Acer.png?alt=media&token=b01af35f-cfee-4cac-8ba7-26f531fe52be"
-          alt="Info Kompetisi Acer"
-          className="info-image"
-        />
-        <a
-          href="https://www.instagram.com/p/C-sQoNZyVak/?utm_source=ig_web_copy_link"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="view-more-link"
-        >
-          Lihat info lebih lanjut
-        </a>
-      </div>
     </div>
   );
 };

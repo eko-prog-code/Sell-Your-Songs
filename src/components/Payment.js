@@ -31,6 +31,7 @@ const Payment = () => {
           <p><strong>Kategori:</strong> {song.category}</p>
           <p><strong>Harga Download:</strong> {song.priceDownload}</p>
           <p><strong>Lisensi Fee:</strong> {song.licensingFee}</p>
+          <p><strong>Timestamp Rilis:</strong> {song.timestampRilis}</p>
         </div>
       ) : (
         <p>Tidak ada detail lagu yang tersedia.</p>

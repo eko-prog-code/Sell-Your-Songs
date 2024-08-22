@@ -216,6 +216,7 @@ const Home = () => {
             </button>
             <p>Download fee: {song.priceDownload}</p>
             <p>Lisensi Fee: {song.licensingFee}</p>
+            <p>Timestamp Rilis: {song.timestampRilis}</p>
             <p>Song Trailer klik button play</p>
             <div>
               <img
