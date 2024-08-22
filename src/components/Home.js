@@ -201,7 +201,7 @@ const Home = () => {
         {filteredSongs.slice().reverse().map((song) => (
           <div key={song.id} className="song-card">
             <h4>{song.title}</h4>
-            <p>{song.Songwriter}</p>
+            <p>{song.songwriter}</p>
             <button
               style={{ backgroundColor: 'blue', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }}
               onClick={() => handleOpenDescModal(song.desc)}

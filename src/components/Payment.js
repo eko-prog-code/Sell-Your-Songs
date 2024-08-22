@@ -26,7 +26,7 @@ const Payment = () => {
       {song ? (
         <div>
           <p><strong>Judul Lagu:</strong> {song.title}</p>
-          <p><strong>Penulis Lagu:</strong> {song.Songwriter}</p>
+          <p><strong>Penulis Lagu:</strong> {song.songwriter}</p>
           <p><strong>Deskripsi:</strong> {song.desc}</p>
           <p><strong>Kategori:</strong> {song.category}</p>
           <p><strong>Harga Download:</strong> {song.priceDownload}</p>

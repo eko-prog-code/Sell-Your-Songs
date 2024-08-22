@@ -4,6 +4,7 @@ import { storage, database } from './firebase';
 import { uploadBytesResumable, getDownloadURL, ref as storageRef } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import './Sys.css';
+import { getAuth } from 'firebase/auth'; // Import Firebase Auth
 
 const Sys = () => {
   const [id, setId] = useState(1);
@@ -17,6 +18,7 @@ const Sys = () => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const auth = getAuth(); // Get Firebase Auth instance
 
   useEffect(() => {
     const fetchLatestId = async () => {
@@ -43,10 +45,18 @@ const Sys = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!file) {
-      setError('Please upload an audio file.');
+    
+    // Check if the user is logged in
+    if (!auth.currentUser) {
+      setError('Oops, Anda belum login..tidak dapat menguploud Audio Mp3, Klik Button Komentar agar Anda dapat login, dan lakukan registrasi!!');
       return;
     }
+
+    if (!file) {
+      setError('Silakan unggah file audio.');
+      return;
+    }
+    
     setUploading(true);
     setError(null);
 
@@ -59,7 +69,12 @@ const Sys = () => {
         // Progress monitoring can be done here if needed
       },
       (err) => {
-        setError('Error uploading file: ' + err.message);
+        // Check for permission errors specifically
+        if (err.code === 'storage/unauthorized') {
+          setError('Oops, Anda belum login..tidak dapat menguploud Audio Mp3, Klik Button Komentar agar Anda dapat login, dan lakukan registrasi!!');
+        } else {
+          setError('Terjadi kesalahan saat mengunggah file: ' + err.message);
+        }
         setUploading(false);
       },
       async () => {
@@ -80,7 +95,7 @@ const Sys = () => {
           setUploading(false);
           navigate('/');
         } catch (err) {
-          setError('Error saving data: ' + err.message);
+          setError('Terjadi kesalahan saat menyimpan data: ' + err.message);
           setUploading(false);
         }
       }
@@ -89,42 +104,42 @@ const Sys = () => {
 
   return (
     <div className="sys-container">
-      <h2>Upload New Song</h2>
+      <h2>Upload Lagu Baru</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>ID Lagu Anda: {id}</label>
         </div>
         <div>
-          <label>Title:</label>
+          <label>Judul:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
         <div>
-          <label>Description:</label>
+          <label>Deskripsi:</label>
           <textarea value={desc} onChange={(e) => setDesc(e.target.value)} required />
         </div>
         <div>
-          <label>Category:</label>
+          <label>Kategori:</label>
           <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
         </div>
         <div>
-          <label>Songwriter:</label>
+          <label>Penulis Lagu:</label>
           <input type="text" value={songwriter} onChange={(e) => setSongwriter(e.target.value)} required />
         </div>
         <div>
-          <label>Licensing Fee:</label>
+          <label>Biaya Lisensi:</label>
           <input type="text" value={licensingFee} onChange={(e) => setLicensingFee(e.target.value)} required />
         </div>
         <div>
-          <label>Price Download:</label>
+          <label>Harga Download:</label>
           <input type="text" value={priceDownload} onChange={(e) => setPriceDownload(e.target.value)} required />
         </div>
         <div>
-          <label>Upload MP3:</label>
+          <label>Unggah MP3:</label>
           <input type="file" accept=".mp3" onChange={handleFileChange} required />
         </div>
         {error && <p className="error">{error}</p>}
         <button type="submit" disabled={uploading}>
-          {uploading ? 'Uploading...' : 'Upload Song'}
+          {uploading ? 'Mengunggah...' : 'Unggah Lagu'}
         </button>
       </form>
       {/* New content below the form */}
@@ -140,7 +155,7 @@ const Sys = () => {
           rel="noopener noreferrer"
           className="view-more-link"
         >
-          View more info
+          Lihat info lebih lanjut
         </a>
       </div>
     </div>
