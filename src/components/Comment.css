@@ -1,0 +1,130 @@
+/* Style untuk modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style untuk konten modal */
+  .modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  /* Style untuk tombol close */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 34px;
+    color: red; /* Warna tombol close merah */
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: red; /* Warna merah tetap saat di-hover atau fokus */
+  }
+  
+  /* Style untuk daftar komentar */
+  .comment-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    list-style: none;
+    margin: 0;
+    border-bottom: 1px solid #ddd; /* Garis pemisah di bawah daftar komentar */
+    margin-top: 18px;
+  }
+  
+  /* Style untuk setiap item komentar */
+  .comment-list li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Garis pemisah antar komentar */
+    padding-bottom: 10px;
+  }
+  
+  /* Style untuk teks komentar */
+  .comment-list p {
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  /* Style untuk nama pengguna dan waktu komentar */
+  .comment-list p strong {
+    font-size: 12px; /* Ukuran font untuk nama pengguna */
+    color: #333; /* Warna teks nama pengguna */
+  }
+  
+  /* Style untuk teks komentar */
+  .comment-list p:last-of-type {
+    font-size: 18px; /* Ukuran font untuk teks komentar */
+  }
+  
+  /* Style untuk input komentar dan tombol kirim */
+  .comment-input {
+    display: flex;
+    align-items: center; /* Atur input dan tombol dalam satu baris */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd; /* Garis pemisah di atas input komentar */
+  }
+  
+  /* Style untuk input komentar */
+  .comment-input input {
+    flex: 1; /* Input komentar menggunakan ruang yang tersisa */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px; /* Jarak antara input dan tombol kirim */
+  }
+  
+  /* Style untuk tombol kirim */
+  .comment-input button {
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* Warna latar belakang tombol kirim */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .comment-input button:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol kirim saat di-hover */
+  }
+  
+  .comment-text {
+    font-size: 16px; /* Ukuran teks untuk komentar */
+    line-height: 1.5;
+    margin-bottom: 8px;
+    text-align: justify; 
+  }
+  
+  .comment-meta {
+    font-size: 10px; /* Ukuran teks untuk metadata (nama dan timestamp) */
+    color: #555;
+    font-style: italic; /* Menambahkan format italic */
+    text-align: left; /* Menyelaraskan teks ke kiri */
+  }
+  
+  

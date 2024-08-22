@@ -1,0 +1,157 @@
+.login-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  animation: slideInFromTop 0.8s ease-in-out;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-container h2 {
+  font-size: 28px;
+  color: #333333;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 14px;
+  transition: border 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-container input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  padding-right: 40px; /* Space for the monkey face icon */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #9ca3af;
+  transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: #3b82f6;
+}
+
+.login-container button {
+  background-color: #3b82f6;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.login-container button:active {
+  background-color: #1d4ed8;
+  transform: translateY(0);
+}
+
+.register-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.register-link a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #2563eb;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .login-container h2 {
+    font-size: 24px;
+  }
+
+  .login-container input {
+    font-size: 14px;
+  }
+
+  .login-container button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container h2 {
+    font-size: 20px;
+  }
+
+  .login-container input {
+    font-size: 12px;
+  }
+
+  .login-container button {
+    font-size: 14px;
+  }
+}
