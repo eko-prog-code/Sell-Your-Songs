@@ -151,6 +151,22 @@ const Sys = () => {
           {uploading ? 'Mengunggah...' : 'Unggah Lagu'}
         </button>
       </form>
+       {/* New content below the form */}
+       <div className="image-section">
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/sell-your-songs.appspot.com/o/InfoKompetisi%20Acer.png?alt=media&token=b01af35f-cfee-4cac-8ba7-26f531fe52be"
+          alt="Info Kompetisi Acer"
+          className="info-image"
+        />
+        <a
+          href="https://www.instagram.com/p/C-sQoNZyVak/?utm_source=ig_web_copy_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="view-more-link"
+        >
+          Lihat info lebih lanjut
+        </a>
+      </div>
     </div>
   );
 };
