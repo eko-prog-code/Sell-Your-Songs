@@ -160,6 +160,11 @@ const Home = () => {
     navigate('/sys-info-and-uploud');
   };
 
+  const handlePaymentClick = (song) => {
+    // Navigate to Payment.js with the selected song data
+    navigate('/payment', { state: { song } });
+  };
+
   return (
     <div className="container">
       <div className="title">
@@ -227,10 +232,17 @@ const Home = () => {
                 Your browser does not support the audio element.
               </audio>
             </div>
+            <div>
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/sell-your-songs.appspot.com/o/uang.png?alt=media&token=668b46f9-ef7f-481a-9e11-088b1f2f7917"
+                alt="Payment"
+                onClick={() => handlePaymentClick(song)}
+                style={{ cursor: 'pointer', width: '50px', height: '50px', marginTop: '10px' }}
+              />
+            </div>
           </div>
         ))}
       </div>
-
 
       {showDescModal && (
         <div className="modal">
@@ -245,10 +257,11 @@ const Home = () => {
         <Comment
           songId={currentSongId}
           onClose={handleCloseCommentModal}
+          userName={userName}
         />
       )}
 
-      {user && (
+{user && (
         <img
           src="https://firebasestorage.googleapis.com/v0/b/sell-your-songs.appspot.com/o/logout-icon.png?alt=media&token=ca0b7904-f2d2-4c3f-8394-2845a9d7e4ee"
           alt="Logout"
