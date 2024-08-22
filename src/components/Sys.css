@@ -1,91 +1,124 @@
 /* Sys.css */
 .sys-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  textarea,
-  input[type="file"] {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  input[type="text"]:focus,
-  textarea:focus,
-  input[type="file"]:focus {
-    border-color: #4a90e2;
-    outline: none;
-  }
-  
-  textarea {
-    height: 100px;
-    resize: vertical;
-  }
-  
-  button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-  }
-  
-  button:hover:not(:disabled) {
-    background-color: #357abd;
-  }
-  
-  .error {
-    color: #e74c3c;
-    font-size: 14px;
-    margin-top: -10px;
-  }
-  
-  @media (max-width: 600px) {
-    .sys-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="file"]:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+button:hover:not(:disabled) {
+  background-color: #357abd;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: -10px;
+}
+
+/* Responsive image-section */
+.image-section {
+  margin-top: 30px;
+  text-align: center; /* Center align the image and link */
+}
+
+.info-image {
+  max-width: 100%; /* Ensure the image doesn't exceed its container width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.view-more-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.view-more-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .sys-container {
       padding: 15px;
-    }
-  
-    h2 {
-      font-size: 18px;
-    }
-  
-    button {
-      font-size: 14px;
-    }
   }
-  
+
+  h2 {
+      font-size: 18px;
+  }
+
+  button {
+      font-size: 14px;
+  }
+
+  /* Ensure the image section is responsive */
+  .image-section {
+      margin-top: 20px;
+  }
+
+  .info-image {
+      width: 100%; /* Make the image take up full width on small screens */
+  }
+}
