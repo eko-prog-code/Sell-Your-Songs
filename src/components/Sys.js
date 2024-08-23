@@ -5,6 +5,7 @@ import { uploadBytesResumable, getDownloadURL, ref as storageRef } from 'firebas
 import { useNavigate } from 'react-router-dom';
 import './Sys.css';
 import { getAuth } from 'firebase/auth';
+import Loading from './Loading'; // Import the Loading component
 
 const Sys = () => {
   const [id, setId] = useState(1);
@@ -109,6 +110,7 @@ const Sys = () => {
 
   return (
     <div className="sys-container">
+      {uploading && <Loading />} {/* Show loading animation if uploading */}
       <h2>Upload Lagu Baru</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -151,8 +153,8 @@ const Sys = () => {
           {uploading ? 'Mengunggah...' : 'Unggah Lagu'}
         </button>
       </form>
-       {/* New content below the form */}
-       <div className="image-section">
+      {/* New content below the form */}
+      <div className="image-section">
         <img
           src="https://firebasestorage.googleapis.com/v0/b/sell-your-songs.appspot.com/o/InfoKompetisi%20Acer.png?alt=media&token=b01af35f-cfee-4cac-8ba7-26f531fe52be"
           alt="Info Kompetisi Acer"

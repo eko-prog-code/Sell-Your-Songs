@@ -5,6 +5,7 @@ import { auth, database } from './firebase';
 import { ref, get, child } from 'firebase/database';
 import Comment from './Comment';
 import './Home.css';
+import Loading from './Loading'; 
 
 const Home = () => {
   const [songs, setSongs] = useState([]);
@@ -19,6 +20,7 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +30,10 @@ const Home = () => {
         const formattedData = Object.keys(data).map(key => ({ id: key, ...data[key] }));
         setSongs(formattedData);
         setFilteredSongs(formattedData);
+        setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(false); // Set loading to false in case of an error
       }
     };
 
@@ -165,6 +169,15 @@ const Home = () => {
     navigate('/payment', { state: { song } });
   };
 
+  const handleShareClick = (title) => {
+    const encodedTitle = encodeURIComponent(title);
+    navigate(`/music/${encodedTitle}`);
+  };
+
+   if (loading) {
+    return <Loading />; // Display the loading animation if loading is true
+  }
+
   return (
     <div className="container">
       <div className="title">
@@ -201,7 +214,7 @@ const Home = () => {
         {filteredSongs.slice().reverse().map((song) => (
           <div key={song.id} className="song-card">
             <h4>{song.title}</h4>
-            <p>{song.songwriter}</p>
+            <p>Song Writer: {song.songwriter}</p>
             <button
               style={{ backgroundColor: 'blue', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }}
               onClick={() => handleOpenDescModal(song.desc)}
@@ -241,6 +254,12 @@ const Home = () => {
                 style={{ cursor: 'pointer', width: '50px', height: '50px', marginTop: '10px' }}
               />
             </div>
+            <button
+              style={{ backgroundColor: 'purple', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }}
+              onClick={() => handleShareClick(song.title)}
+            >
+              Share
+            </button>
           </div>
         ))}
       </div>

@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Sys from './components/Sys'; // Import Sys component
 import Payment from './components/Payment'; // Import Payment component
+import MusicDetail from './components/MusicDetail'; // Import MusicDetail component
 import './App.css'; // Import file CSS
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/sys-info-and-uploud" element={<Sys />} /> {/* Add route for Sys */}
         <Route path="/payment" element={<Payment />} /> {/* Add route for Payment */}
+        <Route path="/music/:title" element={<MusicDetail />} /> {/* Add route for MusicDetail with dynamic title */}
       </Routes>
     </Router>
   );

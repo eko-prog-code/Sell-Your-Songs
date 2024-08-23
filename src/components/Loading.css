@@ -1,0 +1,28 @@
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Slightly dim the background */
+    z-index: 9999; /* Ensure it overlays the entire content */
+  }
+  
+  .loading-image {
+    width: 100px;
+    height: 100px;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
